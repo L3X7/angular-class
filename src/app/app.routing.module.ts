@@ -8,6 +8,10 @@ export const routes: Routes = [
         loadChildren: './modules/admin/admin.module#AdminModule',
     },
     {
+        path:'country',
+        loadChildren: './modules/country/country.module#CountryModule'
+    },
+    {
         path: '',
         redirectTo: 'admin',
         pathMatch: 'full'
