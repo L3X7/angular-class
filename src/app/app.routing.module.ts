@@ -12,6 +12,14 @@ export const routes: Routes = [
         loadChildren: './modules/country/country.module#CountryModule'
     },
     {
+        path:'ejercicio1',
+        loadChildren: './modules/ejercicio1/ejercicio1.module#Ejercicio1Module'
+    },
+    {
+        path:'ejercicio2',
+        loadChildren: './modules/ejercicio2/ejercicio2.module#Ejercicio2Module'
+    },
+    {
         path: '',
         redirectTo: 'admin',
         pathMatch: 'full'
