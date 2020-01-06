@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
+  encapsulation: ViewEncapsulation.None
 
 })
 export class UserComponent implements OnInit {
@@ -25,7 +26,29 @@ export class UserComponent implements OnInit {
       id: ['', Validators.compose([Validators.required])],
       text: ['', Validators.required],
       property: ['', Validators.required],
+      countries: this.fb.array([])
     });
+  }
+
+  get _getCountries(): FormArray {
+    return this.form.get('countries') as FormArray;
+  }
+
+  public _newCountry(): FormGroup {
+    return this.fb.group({
+      id: ['', Validators.required],
+      name: ['', Validators.required]
+    });
+  }
+
+  public _addCountry(): void {
+    this._getCountries.push(this._newCountry());
+    console.log(this._getCountries.getRawValue());
+  }
+
+
+  public _removeCountry(index): void {
+    this._getCountries.removeAt(index);
   }
 
   private _getData(): void {
@@ -51,7 +74,6 @@ export class UserComponent implements OnInit {
 
   public _submitForm(): void {
     const formData = this.form.getRawValue();
-    debugger
     this.listData.push({
       id: formData.id,
       text: `${formData.text}`,
