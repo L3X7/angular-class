@@ -1,3 +1,59 @@
-<p>
-  xyz works!
-</p>
+<section class="container">
+  <div class="row form-section">
+  <div class="col-md-12">
+    <form [formGroup]="form" (ngSubmit)="_submitForm()">
+      <div class="form-group">
+        <div class="col-md-3">
+          <input type="text" formControlName="id" class="form-control" placeholder="id">{{form.id}}<br>
+        </div>
+        <div class="col-md-3">
+          <input type="text" formControlName="codigo" class="form-control" placeholder="codigo">{{form.codigo}}<br>
+        </div>
+        <div class="col-md-3">
+          <input type="text" formControlName="pais" class="form-control" placeholder="pais">{{form.pais}}<br>
+        </div>
+      </div>
+      <button type="submit" value="{{boton}}" class="btn btn-success" [disabled]="!form.valid">{{boton}}</button>
+    </form>
+  </div>
+</div>
+  <hr>
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+            id
+          </th>
+          <th>
+            codigo
+          </th>
+          <th>
+            pais
+          </th>
+          <th>
+            opciones
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listData">
+          <td>
+            {{item.id}}
+          </td>
+          <td>
+            {{item.codigo}}
+          </td>
+          <td>
+            {{item.pais}}
+          </td>
+          <td>
+            <button class="btn btn-success" (click)="_updateItem(item.id, item.codigo, item.pais)">Actualizar</button>
+            &nbsp;
+            <button class="btn btn-danger" (click)="_deleteItem(item.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
