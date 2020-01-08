@@ -18,4 +18,13 @@ export class PostService {
         );
     }
     
+    public GetLink2 (){
+        return this.http.get<any>('https://jsonplaceholder.typicode.com/comments').pipe(
+            map(
+                data => {
+                    return data;
+                }
+            )
+        );
+    }
 }
