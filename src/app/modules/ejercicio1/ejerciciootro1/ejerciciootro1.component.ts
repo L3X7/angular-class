@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from 'src/app/Service/post.service';
 
 @Component({
   selector: 'app-ejerciciootro1',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Ejerciciootro1Component implements OnInit {
 
-  constructor() { }
+  public list: any[];
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
+    this.Func();
+  }
+
+  private Func (): void {
+    this.list = [];
+    this.postService.GetPost().subscribe(
+      result => {
+        this.list = result;
+      },
+      error => {
+        console.log('error');
+      },
+      ()=>{
+        this.list = [...this.list];
+      }
+    )
   }
 
 }
