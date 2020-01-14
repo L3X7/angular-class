@@ -15,6 +15,10 @@ app.use(bodyParse.urlencoded({ extended: false }));
 
 mongoose.connect('mongodb://' + mongo.prodMongDb + '/' + mongo.mongoDb, { useNewUrlParser: true });
 
+app.use(cors());
+app.use(bodyParse.json());
+app.use(bodyParse.urlencoded({ extended: false }));
+
 app.use('/api', api);
 
 app.listen(port, () => {
